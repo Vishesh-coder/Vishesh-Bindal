@@ -1,0 +1,1498 @@
+<!-- Created by Vishesh Bindal, all the things belongs to the creator of the website -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Welcome! This is Vishesh Bindal and this is My Portfolio Website made with HTML, CSS and JS. In this website I have mentioned all the things related to programming and other Awesome stuff which you will be interested in!">
+    <meta name="author" content="Vishesh Bindal">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Vishesh Bindal, Portfolio, Website, Youtube, Art, Craft">
+    <link rel="icon" type="image" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Vishesh Bindal | Gallery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(45deg, #08486b, #0384ca);
+            overflow: overlay;
+        }
+
+        .load {
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #ee5555 url('loader.gif') no-repeat center;
+            background-size: 40%;
+            z-index: 1000;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            position: sticky;
+            top: 0px;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid grey;
+            z-index: 5;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 5px 15px rgba(0 0 0 / 60%);
+        }
+
+        nav img {
+            width: 200px;
+            padding: 5px;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.5s;
+        }
+
+        nav img:hover {
+            filter: invert(50%);
+        }
+
+        .nav-links {
+            text-align: right;
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .nav-links ul li {
+            list-style: none;
+            display: inline-block;
+            position: relative;
+            margin: 15px;
+            font-size: 22px;
+        }
+
+        .nav-links ul li a {
+            padding: 5px 0;
+            text-decoration: none;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .nav-links ul li a:after {
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: #bfbfbf;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            /* margin: auto; */
+            transition: transform 0.25s ease-out;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .nav-links ul li a:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-links ul li:nth-child(3) a:after {
+            transform: scaleX(1);
+        }
+
+        .main {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .wrap .close {
+            display: grid;
+            place-items: center;
+            height: 60px;
+            width: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            color: white;
+            font-size: 30px;
+            border: 1px solid black;
+            transition: 0.5s;
+            z-index: 931;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+
+        .wrap .close:hover {
+            background: black;
+        }
+
+        .wrap .arrow {
+            display: grid;
+            place-items: center;
+            height: 60px;
+            width: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            color: white;
+            font-size: 30px;
+            border: 1px solid black;
+            transition: 0.5s;
+            z-index: 931;
+            backdrop-filter: blur(5px);
+        }
+
+        .wrap .arrow:hover {
+            background: black;
+        }
+
+        .paints {
+            height: 350px;
+            width: auto;
+            margin: 50px;
+            border: 2px solid #818181;
+            border-radius: 10px;
+            -webkit-border-radius: 10px;
+            transition: 0.5s cubic-bezier(.175, .885, .32, 1.275);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+            cursor: pointer;
+            opacity: 0;
+        }
+
+        .paints:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 60px rgba(0, 0, 0, 0.65);
+        }
+
+        .wrap {
+            height: 100vh;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(6px);
+            top: 0;
+            left: 0;
+            position: fixed;
+            z-index: 900;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .big {
+            position: absolute;
+            z-index: 900;
+            display: none;
+        }
+
+        .big .i {
+            border-radius: 10px;
+            height: 650px;
+            width: auto;
+        }
+
+        footer {
+            border-top: 2px solid grey;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            height: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        footer .social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        footer .social ul {
+            list-style: none;
+            user-select: none;
+        }
+
+        footer .social ul li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        footer .social ul li:hover {
+            transform: scale(1.2);
+        }
+
+        footer .social ul li a {
+            color: white;
+            font-size: 22px;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        footer .social ul li:hover:first-child a {
+            color: #000000;
+        }
+
+        footer .social ul li:hover:nth-child(2) a {
+            color: #fe0000;
+        }
+
+        footer .social ul li:hover:nth-child(3) a {
+            color: #00d856;
+        }
+
+        footer .social ul li:hover:nth-child(4) a {
+            color: #0078d7;
+        }
+
+        footer .social ul li:hover:nth-child(5) a {
+            color: #000000;
+        }
+        
+		footer .social ul li:hover:nth-child(6) a {
+			color: #0077b5;
+		}
+
+        footer .social ul li:hover:last-child a {
+            color: #f06a35;
+        }
+
+        footer .copyright {
+            user-select: none;
+        }
+
+        footer .copyright h1 {
+            color: white;
+            font-size: 21px;
+            font-weight: 200;
+            padding: 10px;
+        }
+
+        footer .xbox,
+        .discord {
+            height: auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding: 10px;
+        }
+
+        footer .xbox .fab,
+        footer .discord .fab {
+            color: white;
+            font-size: 22px;
+            padding: 5px;
+        }
+
+        footer .xbox .fas,
+        footer .gmail .fas,
+        footer .discord .fas {
+            color: white;
+            font-size: 22px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        footer .xbox .fas:hover {
+            transform: scale(1.1);
+        }
+
+        footer .discord .fas:hover {
+            transform: scale(1.1);
+        }
+
+        footer .gmail .fas:hover {
+            transform: scale(1.1);
+        }
+
+        footer .xbox .fas:active {
+            color: greenyellow;
+        }
+
+        footer .discord .fas:active {
+            color: greenyellow;
+        }
+
+        footer .gmail .fas:active {
+            color: greenyellow;
+        }
+
+        footer .xbox h2 {
+            color: white;
+            font-size: 22px;
+        }
+
+        footer .discord h2 {
+            color: white;
+            font-size: 22px;
+        }
+
+        footer .gmail {
+            height: auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding: 10px;
+        }
+
+        footer .gmail #fab {
+            color: white;
+            font-size: 22px;
+            padding: 5px;
+        }
+
+        footer .gmail h2 {
+            color: white;
+            font-size: 21px;
+        }
+
+        .cover {
+            display: none;
+            place-items: center;
+            color: white;
+            text-align: center;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #091925;
+            z-index: 950;
+        }
+
+        .copy {
+            position: fixed;
+            color: white;
+            padding: 50px;
+            font-size: 30px;
+            background: #333333;
+            height: auto;
+            width: auto;
+            display: none;
+            place-items: center;
+            z-index: 910;
+            border: 2px solid white;
+            border-radius: 20px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        ::-webkit-scrollbar,
+        ::-webkit-scrollbar-track {
+            width: 0.7vw;
+            border: none;
+            background: rgb(72, 194, 202);
+            margin-block: 2em;
+        }
+
+        ::-webkit-scrollbar-button,
+        ::-webkit-scrollbar-track-piece,
+        ::-webkit-scrollbar-corner,
+        ::-webkit-resizer {
+            display: none;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background-color: #C1C1C1;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d6d5d5;
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-image: url("s3.png");
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        @media (max-width:1024px) {
+            .paints {
+                height: 300px;
+                width: auto;
+            }
+
+            .big .i {
+                width: 700px;
+                height: auto;
+            }
+
+            .big .l {
+                height: 650px;
+                width: auto;
+            }
+        }
+
+        @media (max-width:930px) {
+
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            nav {
+                backdrop-filter: none !important;
+            }
+
+            .nav-links ul {
+                position: fixed;
+                width: 200px;
+                height: 100vh;
+                background: #001d24;
+                top: 100px;
+                right: -300px;
+                text-align: left;
+                transition: 0.5s;
+                box-shadow: -10px 0 50px rgba(0, 0, 0, 0.6);
+                padding: 30px;
+            }
+
+            nav .nav-links ul li {
+                display: block;
+                margin: 15px;
+            }
+
+            nav .nav-links ul li a {
+                font-size: 20px;
+                border-bottom: 2px solid transparent;
+            }
+
+            .nav-links ul li:nth-child(3) a {
+                border-bottom: 2px solid #e6e6e6;
+            }
+
+            .nav-links ul li a:hover {
+                border-bottom: 2px solid #e6e6e6;
+            }
+
+            .nav-links ul li a:hover:after {
+                width: 0;
+            }
+
+            .nav-links ul li:nth-child(3) a:after {
+                width: 0;
+            }
+
+            .toggle {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                border-radius: 5px;
+                border: 2px solid white;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 50;
+                cursor: pointer;
+                transition: 0.5s all;
+            }
+
+            .toggle.open {
+                transition: 0.5s all;
+            }
+
+            .toggle:hover,
+            .toggle.open:hover {
+                transform: scale(1.1);
+            }
+
+            .toggle .toggle-line {
+                width: 75%;
+                height: 4px;
+                background: white;
+                border-radius: 20px;
+                position: absolute;
+                transition: 0.5s all;
+                display: block;
+            }
+
+            .toggle .toggle-line:after {
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background: white;
+                border-radius: 20px;
+                transform: translateY(12px);
+                transition: 0.5s all;
+            }
+
+            .toggle .toggle-line:before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background: white;
+                border-radius: 20px;
+                transform: translateY(-12px);
+                transition: 0.5s all;
+            }
+
+            .toggle.open .toggle-line {
+                background: transparent;
+            }
+
+            .toggle.open .toggle-line:before {
+                transform: rotate(45deg);
+            }
+
+            .toggle.open .toggle-line:after {
+                transform: rotate(-45deg);
+            }
+        }
+
+        @media (max-width:768px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .copy {
+                padding: 40px;
+                font-size: 20px;
+            }
+
+            .big .i {
+                width: 580px;
+                height: auto;
+            }
+
+            .big .l {
+                height: 560px;
+                width: auto;
+            }
+        }
+
+        @media (max-height:680px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            footer .xbox .fab,
+            footer .discord .fab {
+                font-size: 20px;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 20px;
+            }
+
+            footer .gmail #fab {
+                font-size: 20px;
+            }
+
+            footer .gmail h2 {
+                font-size: 20px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 20px;
+            }
+
+            footer .copyright h1 {
+                font-size: 20px;
+            }
+
+            footer .social ul li a {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width:640px) {
+            .big .i {
+                width: 500px;
+                height: auto;
+            }
+
+            .big .l {
+                height: 480px;
+                width: auto;
+            }
+
+            .paints {
+                height: 250px;
+                width: auto;
+            }
+
+            .paints.le {
+                width: 230px;
+                height: auto;
+            }
+        }
+
+        @media (max-width:563px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .copy {
+                padding: 30px;
+                font-size: 15px;
+                border-radius: 12px;
+            }
+
+            .big .i {
+                width: 380px;
+                height: auto;
+            }
+
+            .big .l {
+                height: 380px;
+                width: auto;
+            }
+        }
+
+        @media (max-width:521px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 20px;
+            }
+
+            footer .gmail h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width:465px) {
+            .paints {
+                height: 200px;
+                width: auto;
+            }
+
+            .paints.le {
+                width: 180px;
+                height: auto;
+            }
+        }
+
+        @media (max-width:425px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .big .i {
+                width: 280px;
+                height: auto;
+            }
+
+            .big .l {
+                height: 280px;
+                width: auto;
+            }
+
+            .wrap .arrow,
+            .wrap .close {
+                transform: scale(0.8);
+            }
+
+            footer .xbox .fab,
+            footer .discord .fab {
+                font-size: 15px;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 17px;
+            }
+
+            footer .gmail #fab {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 17px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 15px;
+            }
+
+            footer .social ul li a {
+                font-size: 15px;
+            }
+
+            .copy {
+                padding: 25px;
+                font-size: 10px;
+                border-radius: 12px;
+            }
+        }
+
+        @media (max-height:425px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            nav img {
+                width: 180px;
+            }
+
+            .nav-links ul {
+                top: 90px;
+            }
+
+            footer .xbox .fab,
+            footer .discord .fab {
+                font-size: 15px;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 17px;
+            }
+
+            footer .gmail #fab {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 17px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 15px;
+            }
+
+            footer .social ul li a {
+                font-size: 15px;
+            }
+
+        }
+
+        @media (max-width:375px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .paints {
+                height: 150px;
+                width: auto;
+            }
+
+            .paints.le {
+                width: 140px;
+                height: auto;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 14px;
+            }
+
+            footer .gmail h2 {
+                font-size: 14px;
+            }
+
+        }
+
+        @media (max-width:320px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            nav img {
+                width: 180px;
+            }
+
+            .nav-links ul {
+                top: 91px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-height:320px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            nav img {
+                width: 160px;
+            }
+
+            .nav-links ul {
+                top: 82px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width:319px) {
+            body {
+                overflow: hidden;
+                min-height: 100vh;
+                width: 100%;
+                background: #091925;
+            }
+
+            section,
+            .sec,
+            nav,
+            .toggle,
+            footer {
+                display: none;
+            }
+
+            .cover1 {
+                display: grid;
+            }
+        }
+
+        @media (max-height:299px) {
+            body {
+                overflow: hidden;
+                min-height: 100vh;
+                width: 100%;
+                background: #091925;
+            }
+
+            section,
+            .sec,
+            nav,
+            .toggle,
+            footer {
+                display: none;
+            }
+
+            .cover2 {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="load"></div>
+    <div class="cover1 cover">
+        <h3>The Website is Not Available in this Device.</h3>
+    </div>
+    <div class="cover2 cover">
+        <h3>The Website is Not Available in Your Device in Landscape Mode.</h3>
+    </div>
+    <div class="copy">
+        <h1>Copied !</h1>
+    </div>
+    <div class="toggle" id="toggle">
+        <div class="toggle-line" id="toggle"></div>
+    </div>
+    <nav>
+        <a href="index.html"><img src="logo.png" alt="logo"></a>
+        <div class="nav-links" id="navLinks">
+            <ul id="links">
+                <li><a href="index.html" target="_blank" title="Home">Home</a></li>
+                <li><a href="my_works.html" target="_blank" title="Go To My Works">My Works</a>
+                </li>
+                <li><a href="#" aria-label="gallery" target="_blank">Gallery</a>
+                </li>
+                <li><a href="tinkercad.html" aria-label="tinkercad" target="_blank">TinkerCAD</a></li>
+                <li><a href="about.html" target="_blank" title="Go To About">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="main">
+        <img class="paints buddha" src="buddha.jpg" alt="buddha">
+        <img class="paints abstract" src="abstract.jpg" alt="abstract">
+        <img class="paints village" src="village.jpg" alt="village">
+        <img class="paints le gond" src="gond.jpg" alt="gond">
+        <img class="paints landscape" src="landscape.jpg" alt="landscape">
+        <img class="paints le still" src="still.jpg" alt="still">
+        <img class="paints triangle" src="triangle.jpg" alt="triangle">
+        <img class="paints le sunflower" src="sunflower.jpg" alt="sunflower">
+        <img class="paints duck" src="duck.jpg" alt="duck">
+        <img class="paints anonymous" src="anonymous.jpg" alt="hacker">
+        <img class="paints le flower" src="flower.jpg" alt="flower">
+        <img class="paints diya" src="diya.jpg" alt="diya">
+        <img class="paints le vase" src="vase.jpg" alt="vase">
+        <img class="paints band" src="band.jpg" alt="band">
+        <img class="paints keychain" src="keychain.jpg" alt="keychain">
+        <img class="paints plane" src="plane.jpg" alt="plane">
+    </div>
+    <div class="wrap">
+        <div class="big buddhabig">
+            <div class="close c1" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i ibuddha" src="buddha.jpg" alt="buddha" loading="lazy">
+            <a href="buddha.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big abstractbig">
+            <div class="close c2" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i iabstract" src="abstract.jpg" alt="abstract" loading="lazy">
+            <a href="abstract.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big gondbig">
+            <div class="close c3" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l igond" src="gond.jpg" alt="gond" loading="lazy">
+            <a href="gond.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big villagebig">
+            <div class="close c4" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i ivillage" src="village.jpg" alt="village" loading="lazy">
+            <a href="village.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big landscapebig">
+            <div class="close c5" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i ilandscape" src="landscape.jpg" alt="landscape" loading="lazy">
+            <a href="landscape.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big stillbig">
+            <div class="close c6" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l istill" src="still.jpg" alt="still" loading="lazy">
+            <a href="still.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big trianglebig">
+            <div class="close c7" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i itriangle" src="triangle.jpg" alt="triangle" loading="lazy">
+            <a href="triangle.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big sunflowerbig">
+            <div class="close c8" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l isunflower" src="sunflower.jpg" alt="sunflower" loading="lazy">
+            <a href="sunflower.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big duckbig">
+            <div class="close c9" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i iduck" src="duck.jpg" alt="duck" loading="lazy">
+            <a href="duck.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big anonymousbig">
+            <div class="close c10" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i ianonymous" src="anonymous.jpg" alt="hacker" loading="lazy">
+            <a href="anonymous.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big flowerbig">
+            <div class="close c11" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l iflower" src="flower.jpg" alt="flower" loading="lazy">
+            <a href="flower.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big diyabig">
+            <div class="close c12" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i idiya" src="diya.jpg" alt="diya" loading="lazy">
+            <a href="diya.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big vasebig">
+            <div class="close c13" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l ivase" src="vase.jpg" alt="vase" loading="lazy">
+            <a href="vase.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big bandbig">
+            <div class="close c14" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i iband" src="band.jpg" alt="band" loading="lazy">
+            <a href="band.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big keychainbig">
+            <div class="close c15" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l ikeychain" src="keychain.jpg" alt="keychain" loading="lazy">
+            <a href="keychain.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+        <div class="big planebig">
+            <div class="close c16" title="close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <img class="i l iplane" src="plane.jpg" alt="plane" loading="lazy">
+            <a href="plane.jpg" target="_blank">
+                <div class="arrow" title="Open in new Tab">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </div>
+            </a>
+        </div>
+    </div>
+    <footer>
+        <div class="social">
+            <ul>
+                <li><a href="https://codepen.io/vishesh-coder" target="_blank" title="Codepen" class="code"><i
+                            class="fab fa-codepen" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://www.youtube.com/channel/UCwOy7VuFyAvna3Ttu3YRl8g" target="_blank" title="YouTube"><i
+                            class="fab fa-youtube" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://open.spotify.com/user/31ciz4zxhc6b35zt7tob6lpz2aia" target="_blank" title="Spotify"><i
+                            class="fab fa-spotify" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="mailto:visheshbindal2007@gmail.com" target="_blank" title="Mail"><i class="fas fa-envelope"
+                            data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://github.com/Vishesh-coder" target="_blank" title="Github" class="git"><i
+                            class="fab fa-github" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://www.linkedin.com/in/vishesh-bindal/" target="_blank" title="LinkedIn" class="linkedin"><i
+                            class="fab fa-linkedin" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://visheshbindal.blogspot.com/" target="_blank" title="Blog"><i class="fab fa-blogger"
+                            data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="xbox">
+            <i class="fab fa-xbox"></i>
+            <h2 title="Xbox ID" id="toCopy">Insane Gamer983</h2>
+            <i class="fas fa-copy" title="Copy" onclick="copy('toCopy')"></i>
+        </div>
+        <div class="discord">
+            <i class="fab fa-discord"></i>
+            <h2 title="Discord ID" id="toID">Vishesh Bindal</h2>
+            <i class="fas fa-copy" title="Copy" onclick="copy('toID')"></i>
+        </div>
+        <div class="gmail">
+            <i class="fa-solid fa-envelope-open-text" id="fab"></i>
+            <h2 title="Gmail" id="toMail">visheshbindal2007@gmail.com</h2>
+            <i class="fas fa-copy" title="Copy" onclick="copy('toMail')"></i>
+        </div>
+        <div class="copyright">
+            <h1>Copyright © <span class="year">2022</span> Vishesh Bindal, Inc. All rights reserved.</h1>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"
+        integrity="sha512-zuZ5wVszlsRbRF/vwXD0QS/tHzBYHFzCD/BT0lI3yrWhNZFWDkkF3KPEY//WTanqxwPdZkskQ+xZo0rnfHBc5A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(window).on('load', function () {
+            $('.load').fadeOut('slow', function () {
+                $('.paints').animate({
+                    opacity: 1
+                }, 'slow');
+            });
+        });
+
+        $('.fa-copy').click(function () {
+            $('.copy').fadeIn('slow');
+            setTimeout(function () {
+                $('.copy').fadeOut('slow');
+            }, 1500);
+        });
+
+        $('.buddha').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.buddhabig').fadeIn('slow');
+        })
+        $('.c1').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.buddhabig').fadeOut('slow');
+        });
+
+        $('.abstract').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.abstractbig').fadeIn('slow');
+        })
+        $('.c2').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.abstractbig').fadeOut('slow');
+        });
+
+        $('.gond').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.gondbig').fadeIn('slow');
+        })
+        $('.c3').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.gondbig').fadeOut('slow');
+        });
+
+        $('.village').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.villagebig').fadeIn('slow');
+        })
+        $('.c4').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.villagebig').fadeOut('slow');
+        });
+
+        $('.landscape').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.landscapebig').fadeIn('slow');
+        })
+        $('.c5').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.landscapebig').fadeOut('slow');
+        });
+
+        $('.still').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.stillbig').fadeIn('slow');
+        })
+        $('.c6').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.stillbig').fadeOut('slow');
+        });
+
+        $('.triangle').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.trianglebig').fadeIn('slow');
+        })
+        $('.c7').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.trianglebig').fadeOut('slow');
+        });
+
+        $('.sunflower').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.sunflowerbig').fadeIn('slow');
+        })
+        $('.c8').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.sunflowerbig').fadeOut('slow');
+        });
+
+        $('.duck').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.duckbig').fadeIn('slow');
+        })
+        $('.c9').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.duckbig').fadeOut('slow');
+        });
+
+        $('.anonymous').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.anonymousbig').fadeIn('slow');
+        })
+        $('.c10').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.anonymousbig').fadeOut('slow');
+        });
+
+        $('.flower').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.flowerbig').fadeIn('slow');
+        })
+        $('.c11').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.flowerbig').fadeOut('slow');
+        });
+
+        $('.diya').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.diyabig').fadeIn('slow');
+        })
+        $('.c12').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.diyabig').fadeOut('slow');
+        });
+
+        $('.vase').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.vasebig').fadeIn('slow');
+        })
+        $('.c13').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.vasebig').fadeOut('slow');
+        });
+
+        $('.band').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.bandbig').fadeIn('slow');
+        })
+        $('.c14').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.bandbig').fadeOut('slow');
+        });
+
+        $('.keychain').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.keychainbig').fadeIn('slow');
+        })
+        $('.c15').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.keychainbig').fadeOut('slow');
+        });
+
+        $('.plane').click(function () {
+            $('.wrap').fadeIn('slow')
+            $('.wrap').css({
+                display: 'flex'
+            })
+            $('.planebig').fadeIn('slow');
+        })
+        $('.c16').click(function () {
+            $('.wrap').fadeOut('slow')
+            $('.planebig').fadeOut('slow');
+        });
+    </script>
+    <script>
+        const toggleBtn = document.querySelector(".toggle");
+        const menu = document.querySelector(".menu");
+        let toggleOpen = false;
+        toggleBtn.addEventListener("click", () => {
+            if (!toggleOpen) {
+                toggleBtn.classList.add("open");
+                toggleOpen = true;
+                document.querySelector('ul').style.right = "0";
+            } else {
+                toggleBtn.classList.remove("open");
+                toggleOpen = false;
+                document.querySelector('ul').style.right = "-250px";
+            }
+        });
+        document.onclick = function (e) {
+            if (e.target.id !== 'navLinks' && e.target.id !== 'links' && e.target.id !== 'toggle') {
+                toggleBtn.classList.remove("open");
+                toggleOpen = false;
+                document.querySelector('ul').style.right = "-250px";
+            }
+        };
+
+        function copy(id) {
+            var text = document.getElementById(id).innerText;
+            var elem = document.createElement("textarea");
+            document.body.appendChild(elem);
+            elem.value = text;
+            elem.select();
+            document.execCommand("copy");
+            document.body.removeChild(elem);
+        }
+
+        let day = new Date();
+        document.querySelector('.year').innerHTML = day.getFullYear();
+
+        history.scrollRestoration = "manual"
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            "use strict"
+            $('footer').ripples({
+                dropRadius: 20,
+                perturbance: 2,
+                resolution: 300,
+                interactive: true,
+            });
+        })
+    </script>
+</body>
+
+</html>

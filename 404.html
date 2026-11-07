@@ -1,0 +1,371 @@
+<!-- Created by Vishesh Bindal, all the things belongs to the creator of the website -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Error 404">
+    <meta name="author" content="Vishesh Bindal">
+    <link rel="icon" type="image" href="icon.png">
+    <title>Vishesh Bindal | Page Not Found</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+            background: #f0f0f0;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .load {
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #ee5555 url('loader.gif') no-repeat center;
+            background-size: 40%;
+            z-index: 1000;
+        }
+
+        .error {
+            height: 100vh;
+            width: 100%;
+            background: url('404.gif') #f0f0f0 bottom no-repeat;
+            background-size: 70%;
+            z-index: 900;
+        }
+
+        h2 {
+            position: absolute;
+            z-index: 800;
+            font-size: 40px;
+            text-transform: capitalize;
+            font-family: Helvetica;
+            text-align: center;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        a {
+            height: 100px;
+            width: 400px;
+            background: darkcyan;
+            border-radius: 100px;
+            color: white;
+            text-transform: capitalize;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-size: 18px;
+            position: absolute;
+            bottom: -160px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+            transition: 1s cubic-bezier(.175, .885, .32, 1.275);
+            text-decoration: none;
+            z-index: 910;
+        }
+
+        a:hover {
+            transform: scale(1.1);
+            background: #24c7c7;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .cover {
+            display: none;
+            place-items: center;
+            color: white;
+            text-align: center;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #091925;
+            z-index: 950;
+        }
+
+        @media (max-width:1440px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 70%;
+                background-position: top;
+            }
+
+            a {
+                height: 100px;
+                width: 400px;
+            }
+        }
+
+        @media (max-width:1024px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 100%;
+                background-position: top;
+            }
+
+            a {
+                height: 100px;
+                width: 400px;
+            }
+        }
+
+        @media (max-width:768px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 120%;
+                background-position: center;
+            }
+
+            a {
+                height: 90px;
+                width: 350px;
+                font-size: 15px;
+            }
+        }
+
+        @media (max-height:710px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 90%;
+                background-position: top;
+            }
+
+            a {
+                height: 80px;
+                width: 340px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-height:560px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 78%;
+                background-position: top;
+            }
+
+            a {
+                height: 80px;
+                width: 320px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-height:500px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 60%;
+                background-position: top;
+            }
+
+            a {
+                height: 60px;
+                width: 300px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width:425px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 120%;
+                background-position: center;
+            }
+
+            a {
+                height: 80px;
+                width: 300px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-height:400px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 40%;
+                background-position: top;
+            }
+
+            a {
+                height: 50px;
+                width: 280px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width:320px) {
+            body {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .error {
+                height: 100vh;
+                width: 100%;
+                overflow: hidden;
+                background-size: 120%;
+                background-position: center;
+            }
+
+            a {
+                height: 60px;
+                width: 200px;
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width:319px) {
+            body {
+                overflow: hidden;
+                min-height: 100vh;
+                width: 100%;
+                background: #091925;
+            }
+
+            section,
+            .sec,
+            nav,
+            .toggle,
+            footer {
+                display: none;
+            }
+
+            .cover1 {
+                display: grid;
+            }
+        }
+
+        @media (max-height:299px) {
+            body {
+                overflow: hidden;
+                min-height: 100vh;
+                width: 100%;
+                background: #091925;
+            }
+
+            section,
+            .sec,
+            nav,
+            .toggle,
+            footer {
+                display: none;
+            }
+
+            .cover2 {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="load"></div>
+    <div class="cover1 cover">
+        <h3>The Website is Not Available in this Device.</h3>
+    </div>
+    <div class="cover2 cover">
+        <h3>The Website is Not Available in Your Device in Landscape Mode.</h3>
+    </div>
+    <div class="error"></div>
+    <h2>The Page you are trying to reach is not Available :(</h2>
+    <a href="index.html">
+        <h1>back to home</h1>
+    </a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(window).on('load', function () {
+
+            $('.load').fadeOut('slow', function () {
+                $('a').css({
+                    bottom: '60px'
+                });
+
+                $('a').hover(function () {
+                    $('a').css({
+                        '-webkit-transition': '0.5s cubic-bezier(.175, .885, .32, 1.275)',
+                        '-o-transition': '0.5s cubic-bezier(.175, .885, .32, 1.275)',
+                        transition: '0.5s cubic-bezier(.175, .885, .32, 1.275)',
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

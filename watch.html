@@ -1,0 +1,365 @@
+<!-- Created by Vishesh Bindal, all the things belongs to the creator of the website -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Digital Watch">
+	<meta name="author" content="Vishesh Bindal">
+	<link rel="icon" type="image" href="icon.png">
+	<title>Vishesh Bindal | Digital Watch</title>
+	<style>
+		@font-face {
+			font-family: 'digital';
+			src: url('digital.ttf');
+		}
+
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			width: 100vw;
+			min-height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #00001a;
+			overflow: hidden;
+		}
+
+		.watch {
+			width: 220px;
+			height: 250px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: relative;
+			border: 3px solid #cccccc;
+			z-index: 10;
+			border-radius: 30px;
+			background: black;
+			transition: 0.5s;
+			user-select: none;
+		}
+
+		.screen {
+			position: absolute;
+			width: 220px;
+			height: 250px;
+			border: 3px solid #cccccc;
+			z-index: 50;
+			border-radius: 30px;
+			background: url('apple_logo.jpg') center no-repeat;
+			background-size: 100%;
+			opacity: 1;
+			transition: 0.5s;
+			background-color: black;
+			user-select: none;
+		}
+
+		.watch:before {
+			content: '';
+			height: 80px;
+			width: 80%;
+			clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+			top: -81.5px;
+			border-radius: 40% 40% 0 0;
+			position: absolute;
+			background: #e6e6e6;
+		}
+
+		.watch:after {
+			content: '';
+			height: 80px;
+			width: 80%;
+			clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+			top: 246px;
+			border-radius: 40% 40% 0 0;
+			position: absolute;
+			background: #e6e6e6;
+			transform: rotate(180deg);
+		}
+
+		h1 {
+			color: white;
+			font-size: 60px;
+			font-family: digital;
+			letter-spacing: 3px;
+			font-weight: 500;
+		}
+
+		#hr,
+		#min {
+			position: relative;
+			top: -20px;
+		}
+
+		#dot {
+			position: relative;
+			top: -25px;
+			margin: 0 5px;
+			animation: blink 1.5s linear infinite;
+			font-family: verdana;
+			font-size: 60px;
+		}
+
+		@keyframes blink {
+			0% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0;
+			}
+		}
+
+		#sec {
+			position: absolute;
+			top: 180px;
+			left: 0px;
+			text-align: center;
+			width: 100%;
+			font-size: 55px;
+		}
+
+		#pr {
+			position: absolute;
+			font-size: 30px;
+			right: 5px;
+			bottom: 80px;
+		}
+
+		.line {
+			position: absolute;
+			bottom: 65px;
+			height: 3px;
+			width: 95%;
+			background: white;
+			border-radius: 20px;
+		}
+
+		.switch {
+			height: 50px;
+			width: 12px;
+			border-radius: 0 5px 5px 0;
+			background: #999999;
+			position: absolute;
+			right: -15px;
+			top: 50px;
+			cursor: pointer;
+			z-index: -10;
+		}
+
+		.switch:active {
+			right: -12px;
+		}
+
+		#day {
+			position: absolute;
+			top: 15px;
+			left: 15px;
+			font-size: 35px;
+		}
+
+		h2 {
+			position: absolute;
+			top: 5px;
+			left: 0;
+			width: 100%;
+			font-size: 30px;
+			color: white;
+			text-align: center;
+			font-family: helvetica;
+			padding: 0 50px;
+		}
+
+		h3 {
+			position: absolute;
+			right: 6px;
+			bottom: 6px;
+			color: white;
+			font-size: 28px;
+			font-family: Verdana, Geneva, Tahoma, sans-serif;
+			font-weight: 500;
+		}
+
+		@media (max-width:768px) {
+			body {
+				width: 100vw;
+				min-height: 100vh;
+			}
+
+			.all {
+				transform: scale(0.8);
+			}
+
+			h2 {
+				font-size: 25px;
+			}
+
+			h3 {
+				font-size: 22px;
+			}
+		}
+
+		@media (max-height:570px) {
+			body {
+				width: 100vw;
+				min-height: 100vh;
+			}
+
+			.all {
+				transform: scale(0.6);
+			}
+
+			h2 {
+				font-size: 22px;
+			}
+
+			h3 {
+				font-size: 20px;
+			}
+		}
+
+		@media (max-height:480px) {
+			body {
+				width: 100vw;
+				min-height: 100vh;
+			}
+
+			.all {
+				transform: scale(0.5);
+			}
+
+			h2 {
+				font-size: 20px;
+			}
+
+			h3 {
+				font-size: 18px;
+			}
+		}
+
+		@media (max-width:425px) {
+			body {
+				width: 100vw;
+				min-height: 100vh;
+			}
+
+			.all {
+				transform: scale(0.7);
+			}
+
+			h2 {
+				font-size: 22px;
+			}
+
+			h3 {
+				font-size: 20px;
+			}
+		}
+
+		@media (max-height:390px) {
+			body {
+				width: 100vw;
+				min-height: 100vh;
+			}
+
+			.all {
+				transform: scale(0.4);
+			}
+
+			h2 {
+				font-size: 18px;
+			}
+
+			h3 {
+				font-size: 15px;
+			}
+		}
+
+		@media (max-height:330px) {
+			body {
+				width: 100vw;
+				min-height: 100vh;
+			}
+
+			h2 {
+				font-size: 16px;
+			}
+
+			h3 {
+				font-size: 14px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<h2>Click on the Watch Screen to 'ON' it and click on the Switch to 'OFF' it.</h2>
+	<div class="all">
+		<div class="screen" onclick="document.querySelector('.screen').style.opacity = '0'"></div>
+		<div class="watch">
+			<div class="switch" title="Switch" onclick="document.querySelector('.screen').style.opacity = '1'"></div>
+			<div class="day">
+				<h1 id="day">Day</h1>
+			</div>
+			<div class="hr">
+				<h1 id="hr">00</h1>
+			</div>
+			<h1 id="dot">:</h1>
+			<div class="min">
+				<h1 id="min">00</h1>
+			</div>
+			<div class="period">
+				<h1 id="pr">AM</h1>
+			</div>
+			<div class="line"></div>
+			<div class="sec">
+				<h1 id="sec">00</h1>
+			</div>
+		</div>
+	</div>
+	<h3><i>Made By -<br>
+			Vishesh Bindal</i></h3>
+	<script>
+		function digiClock() {
+			let day = new Date();
+			var hr = document.querySelector('#hr');
+			var min = document.querySelector('#min');
+			var sec = document.querySelector('#sec');
+			var h = day.getHours();
+			var m = day.getMinutes();
+			var s = day.getSeconds();
+			hr.innerHTML = h;
+			min.innerHTML = m;
+			sec.innerHTML = s;
+			document.querySelector('#pr').innerHTML = "AM";
+
+			if (h > 12) {
+				hr.innerHTML = h - 12;
+				document.querySelector('#pr').innerHTML = "PM";
+			}
+			if (s < 10) {
+				sec.innerHTML = "0" + s;
+			}
+			if (m < 10) {
+				min.innerHTML = "0" + m;
+			}
+			if (h < 10) {
+				hr.innerHTML = "0" + h;
+			}
+		}
+		var interval = setInterval(digiClock, 1000);
+		let day = new Date();
+		var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+		var dayName = days[day.getDay()];
+		document.querySelector('#day').innerHTML = dayName;
+	</script>
+</body>
+
+</html>

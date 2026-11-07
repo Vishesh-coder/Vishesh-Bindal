@@ -1,0 +1,1524 @@
+<!-- Created by Vishesh Bindal, all the things belongs to the creator of the website -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TinkerCAD Login Page Giving Instructions Regarding It !">
+    <meta name="author" content="Vishesh Bindal">
+    <meta name="keywords" content="HTML, CSS, JavaScript, Vishesh Bindal, Portfolio, Website, Youtube">
+    <link rel="icon" type="image" href="icon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Vishesh Bindal | TinkerCAD</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            min-height: 100vh;
+            width: 100%;
+            background: linear-gradient(45deg, #3F7E6C, #1a332c);
+            overflow: overlay;
+        }
+
+        .load {
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #ee5555 url('loader.gif') no-repeat center;
+            background-size: 40%;
+            z-index: 1000;
+        }
+
+        section {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            position: sticky;
+            top: 0px;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            border-bottom: 2px solid grey;
+            z-index: 5;
+            backdrop-filter: blur(6px);
+            box-shadow: 0 5px 15px rgba(0 0 0 / 60%);
+        }
+
+        nav img {
+            width: 200px;
+            padding: 5px;
+            cursor: pointer;
+            user-select: none;
+            transition: 0.5s;
+        }
+
+        nav img:hover {
+            filter: invert(50%);
+        }
+
+        .nav-links {
+            text-align: right;
+            flex: 1;
+            padding-right: 30px;
+        }
+
+        .nav-links ul li {
+            list-style: none;
+            display: inline-block;
+            position: relative;
+            margin: 15px;
+            font-size: 22px;
+        }
+
+        .nav-links ul li a {
+            padding: 5px 0;
+            text-decoration: none;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .nav-links ul li a:after {
+            content: '';
+            height: 2px;
+            width: 100%;
+            background: #bfbfbf;
+            position: absolute;
+            left: 0px;
+            bottom: 0px;
+            /* margin: auto; */
+            transition: transform 0.25s ease-out;
+            transform: scaleX(0);
+            transform-origin: bottom right;
+        }
+
+        .nav-links ul li a:hover:after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        .nav-links ul li:nth-child(4) a:after {
+            transform: scaleX(1);
+        }
+
+        section .note {
+            width: 100%;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            line-height: 50px;
+            color: #f2f2f2;
+            transition: 1.5s all;
+            text-align: center;
+            padding: 15px;
+            transform: translateY(250px);
+            opacity: 0;
+        }
+
+        section .note .text {
+            cursor: pointer;
+        }
+
+        section .note h2 {
+            font-weight: 500;
+        }
+
+        section .note span {
+            color: lightskyblue;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.5s;
+        }
+
+        section .note span:hover {
+            text-decoration: underline;
+            color: #3fa5e4;
+        }
+
+        section .note h2:nth-child(3) {
+            color: #ff3333;
+            padding-top: 30px;
+        }
+
+        section a {
+            text-decoration: none;
+        }
+
+        section a .btn {
+            padding: 30px;
+            border-radius: 20px;
+            background: #33ccff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 30px;
+            color: white;
+            border: 10px solid rgba(179, 236, 255, 0.5);
+            box-shadow: 0 0 50px rgba(204, 242, 255, 0.5);
+            transition: 1.5s;
+            transform: translateY(-250px);
+            opacity: 0;
+        }
+
+        section a .btn:hover {
+            box-shadow: 0 0 70px rgba(204, 242, 255, 0.5);
+        }
+
+        footer {
+            border-top: 2px solid grey;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            height: auto;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        footer .social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        footer .social ul {
+            list-style: none;
+            user-select: none;
+        }
+
+        footer .social ul li {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        footer .social ul li:hover {
+            transform: scale(1.2);
+        }
+
+        footer .social ul li a {
+            color: white;
+            font-size: 22px;
+            text-decoration: none;
+            transition: 0.4s;
+        }
+
+        footer .social ul li:hover:first-child a {
+            color: #000000;
+        }
+
+        footer .social ul li:hover:nth-child(2) a {
+            color: #fe0000;
+        }
+
+        footer .social ul li:hover:nth-child(3) a {
+            color: #00d856;
+        }
+
+        footer .social ul li:hover:nth-child(4) a {
+            color: #0078d7;
+        }
+
+        footer .social ul li:hover:nth-child(5) a {
+            color: #000000;
+        }
+        
+		footer .social ul li:hover:nth-child(6) a {
+			color: #0077b5;
+		}
+
+        footer .social ul li:hover:last-child a {
+            color: #f06a35;
+        }
+
+        footer .copyright {
+            user-select: none;
+        }
+
+        footer .copyright h1 {
+            color: white;
+            font-size: 21px;
+            font-weight: 200;
+            padding: 10px;
+        }
+
+        footer .xbox,
+        .discord {
+            height: auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding: 10px;
+        }
+
+        footer .xbox .fab,
+        footer .discord .fab {
+            color: white;
+            font-size: 22px;
+            padding: 5px;
+        }
+
+        footer .xbox .fas,
+        footer .gmail .fas,
+        footer .discord .fas {
+            color: white;
+            font-size: 22px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        footer .xbox .fas:hover {
+            transform: scale(1.1);
+        }
+
+        footer .discord .fas:hover {
+            transform: scale(1.1);
+        }
+
+        footer .gmail .fas:hover {
+            transform: scale(1.1);
+        }
+
+        footer .xbox .fas:active {
+            color: greenyellow;
+        }
+
+        footer .discord .fas:active {
+            color: greenyellow;
+        }
+
+        footer .gmail .fas:active {
+            color: greenyellow;
+        }
+
+        footer .xbox h2 {
+            color: white;
+            font-size: 22px;
+        }
+
+        footer .discord h2 {
+            color: white;
+            font-size: 22px;
+        }
+
+        footer .gmail {
+            height: auto;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: row;
+            padding: 10px;
+        }
+
+        footer .gmail #fab {
+            color: white;
+            font-size: 22px;
+            padding: 5px;
+        }
+
+        footer .gmail h2 {
+            color: white;
+            font-size: 21px;
+        }
+
+        .cover {
+            display: none;
+            place-items: center;
+            color: white;
+            text-align: center;
+            position: fixed;
+            height: 100vh;
+            width: 100%;
+            background: #091925;
+            z-index: 900;
+        }
+
+        .copy {
+            position: fixed;
+            color: white;
+            padding: 50px;
+            font-size: 30px;
+            background: #333333;
+            height: auto;
+            width: auto;
+            display: none;
+            place-items: center;
+            z-index: 910;
+            border: 2px solid white;
+            border-radius: 20px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            user-select: none;
+            box-shadow: 20px 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .tinkercad {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: fixed;
+            flex-wrap: wrap;
+            z-index: 905;
+            pointer-events: none;
+            background: transparent;
+            user-select: none;
+        }
+
+        .tinkercad .tinker {
+            height: 80vh;
+            width: 80vw;
+            border-radius: 20px;
+            background: url('tinker.jpg') #fafafa no-repeat center;
+            background-size: contain;
+            box-shadow: 30px 30px 50px rgba(0, 0, 0, 0.6);
+            pointer-events: visible;
+            display: none;
+            place-items: center;
+            overflow: hidden;
+            position: fixed;
+        }
+
+        .tinkercad .tinker iframe {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        .tinkercad .tinker .close {
+            display: grid;
+            place-items: center;
+            height: 60px;
+            width: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            font-family: helvetica;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 35px;
+            border: 1px solid black;
+            transition: 0.5s;
+            z-index: 5;
+            backdrop-filter: blur(5px);
+        }
+
+        .tinkercad .tinker .close:hover {
+            background: black;
+        }
+
+        .tinkercad .tinker .cube {
+            display: grid;
+            place-items: center;
+            height: 60px;
+            width: 60px;
+            background: rgba(0, 0, 0, 0.6);
+            font-family: helvetica;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            border-radius: 5px;
+            color: white;
+            font-size: 30px;
+            border: 1px solid black;
+            transition: 0.5s;
+            z-index: 5;
+            backdrop-filter: blur(5px);
+        }
+
+        .tinkercad .tinker .cube .fa-cube {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            position: absolute;
+        }
+
+        .fa-arrow-left {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            place-items: center;
+            position: absolute;
+            display: none;
+        }
+
+        .tinkercad .tinker .cube:hover {
+            background: black;
+        }
+
+        .tinkercad .msg {
+            height: 180px;
+            width: 50vw;
+            background: #3d3d3d;
+            border: 2px solid lightblue;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            box-shadow: inset 10px 10px 20px rgba(255, 255, 255, 0.8),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.9);
+            display: none;
+            place-items: center;
+            position: absolute;
+        }
+
+        .congo {
+            position: fixed;
+            display: grid;
+            place-items: center;
+            bottom: 15px;
+            right: -435px;
+            height: 70px;
+            width: 420px;
+            background: #f5f5f5;
+            border: 2px solid black;
+            border-radius: 10px;
+            z-index: 908;
+            transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.6);
+            user-select: none;
+        }
+
+        .congo h3 {
+            font-weight: 100;
+        }
+
+        ::-webkit-scrollbar,
+        ::-webkit-scrollbar-track {
+            width: 0.7vw;
+            border: none;
+            background: rgb(42, 143, 96);
+            margin-block: 2em;
+        }
+
+        ::-webkit-scrollbar-button,
+        ::-webkit-scrollbar-track-piece,
+        ::-webkit-scrollbar-corner,
+        ::-webkit-resizer {
+            display: none;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background-color: #B76D68;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e29a95;
+        }
+
+        ::-webkit-scrollbar-thumb:active {
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background-image: url("s4.png");
+            background-repeat: repeat-y;
+            background-size: contain;
+        }
+
+        @media (max-width:1220px) {
+            .tinkercad .msg {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width:930px) {
+
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            nav {
+                backdrop-filter: none !important;
+            }
+
+            .nav-links ul {
+                position: fixed;
+                width: 200px;
+                height: 100vh;
+                background: #001d24;
+                top: 100px;
+                right: -300px;
+                text-align: left;
+                transition: 0.5s;
+                box-shadow: -10px 0 50px rgba(0, 0, 0, 0.6);
+                padding: 30px;
+            }
+
+            nav .nav-links ul li {
+                display: block;
+                margin: 15px;
+            }
+
+            nav .nav-links ul li a {
+                font-size: 20px;
+                border-bottom: 2px solid transparent;
+            }
+
+            .nav-links ul li:nth-child(4) a {
+                border-bottom: 2px solid #e6e6e6;
+            }
+
+            .nav-links ul li a:hover {
+                border-bottom: 2px solid #e6e6e6;
+            }
+
+            .nav-links ul li a:hover:after {
+                width: 0;
+            }
+
+            .nav-links ul li:nth-child(4) a:after {
+                width: 0;
+            }
+
+            .toggle {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                border-radius: 5px;
+                border: 2px solid white;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 50;
+                cursor: pointer;
+                transition: 0.5s all;
+            }
+
+            .toggle.open {
+                transition: 0.5s all;
+            }
+
+            .toggle:hover,
+            .toggle.open:hover {
+                transform: scale(1.1);
+            }
+
+            .toggle .toggle-line {
+                width: 75%;
+                height: 4px;
+                background: white;
+                border-radius: 20px;
+                position: absolute;
+                transition: 0.5s all;
+                display: block;
+            }
+
+            .toggle .toggle-line:after {
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background: white;
+                border-radius: 20px;
+                transform: translateY(12px);
+                transition: 0.5s all;
+            }
+
+            .toggle .toggle-line:before {
+                content: "";
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                background: white;
+                border-radius: 20px;
+                transform: translateY(-12px);
+                transition: 0.5s all;
+            }
+
+            .toggle.open .toggle-line {
+                background: transparent;
+            }
+
+            .toggle.open .toggle-line:before {
+                transform: rotate(45deg);
+            }
+
+            .toggle.open .toggle-line:after {
+                transform: rotate(-45deg);
+            }
+        }
+
+        @media (max-width:920px) {
+            .tinkercad .msg {
+                font-size: 13px;
+                height: 160px;
+            }
+        }
+
+        @media (max-width:830px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section .note {
+                width: 100%;
+                height: auto;
+                line-height: 50px;
+                font-size: 15px;
+            }
+
+            section a .btn {
+                padding: 20px;
+                border-radius: 20px;
+                background: #33ccff;
+                font-size: 25px;
+                border: 10px solid rgba(179, 236, 255, 0.5);
+                box-shadow: 0 0 50px rgba(204, 242, 255, 0.5);
+            }
+        }
+
+        @media (max-width:820px) {
+            .tinkercad .msg {
+                font-size: 12px;
+                height: 140px;
+                width: 60vw;
+            }
+        }
+
+        @media (max-width:768px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .copy {
+                padding: 40px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-height:680px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            footer .xbox .fab,
+            footer .discord .fab {
+                font-size: 20px;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 20px;
+            }
+
+            footer .gmail #fab {
+                font-size: 20px;
+            }
+
+            footer .gmail h2 {
+                font-size: 20px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 20px;
+            }
+
+            footer .copyright h1 {
+                font-size: 20px;
+            }
+
+            footer .social ul li a {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width:820px) {
+            .tinkercad .msg {
+                font-size: 11px;
+                height: 140px;
+                width: 60vw;
+            }
+        }
+
+        @media (max-height:560px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section .note {
+                width: 100%;
+                height: auto;
+                line-height: 45px;
+                font-size: 12px;
+            }
+
+            section a .btn {
+                padding: 15px;
+                border-radius: 15px;
+                background: #33ccff;
+                font-size: 20px;
+                border: 6px solid rgba(179, 236, 255, 0.5);
+                box-shadow: 0 0 50px rgba(204, 242, 255, 0.5);
+            }
+        }
+
+        @media (max-width:563px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            .copy {
+                padding: 30px;
+                font-size: 15px;
+                border-radius: 12px;
+            }
+        }
+
+        @media (max-width:550px) {
+            .tinkercad .msg {
+                font-size: 9px;
+                height: 120px;
+                width: 60vw;
+            }
+        }
+
+        @media (max-height:500px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section .note {
+                width: 100%;
+                height: auto;
+                line-height: 30px;
+                font-size: 12px;
+            }
+
+            section a .btn {
+                padding: 15px;
+                border-radius: 12px;
+                background: #33ccff;
+                font-size: 18px;
+                border: 6px solid rgba(179, 236, 255, 0.5);
+                box-shadow: 0 0 50px rgba(204, 242, 255, 0.5);
+            }
+
+            section .note h2:nth-child(3) {
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width:521px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 20px;
+            }
+
+            footer .gmail h2 {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width:480px) {
+            .tinkercad .msg {
+                font-size: 8px;
+                height: 100px;
+                width: 60vw;
+            }
+
+            .congo {
+                height: 60px;
+                width: 380px;
+                border-radius: 10px;
+                box-shadow: 20px 20px 40px rgba(0, 0, 0, 0.6);
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width:425px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section {
+                height: 100vh;
+                width: 100%;
+            }
+
+            section .note {
+                width: 100%;
+                height: auto;
+                line-height: 50px;
+                font-size: 12px;
+            }
+
+            section a .btn {
+                padding: 18px;
+                border-radius: 15px;
+                background: #33ccff;
+                font-size: 20px;
+                border: 6px solid rgba(179, 236, 255, 0.5);
+                box-shadow: 0 0 50px rgba(204, 242, 255, 0.5);
+            }
+
+            footer .xbox .fab,
+            footer .discord .fab {
+                font-size: 15px;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 17px;
+            }
+
+            footer .gmail #fab {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 17px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 15px;
+            }
+
+            footer .social ul li a {
+                font-size: 15px;
+            }
+
+            .copy {
+                padding: 25px;
+                font-size: 10px;
+                border-radius: 12px;
+            }
+
+            .congo {
+                height: 55px;
+                width: 310px;
+                border-radius: 10px;
+                box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.6);
+                font-size: 12px;
+            }
+        }
+
+        @media (max-height:425px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section {
+                height: 100vh;
+                width: 100%;
+            }
+
+            nav img {
+                width: 180px;
+            }
+
+            .nav-links ul {
+                top: 90px;
+            }
+
+            footer .xbox .fab,
+            footer .discord .fab {
+                font-size: 15px;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 17px;
+            }
+
+            footer .gmail #fab {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 17px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 15px;
+            }
+
+            footer .social ul li a {
+                font-size: 15px;
+            }
+
+        }
+
+        @media (max-height:420px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section .note {
+                width: 100%;
+                height: auto;
+                line-height: 25px;
+                font-size: 11px;
+            }
+
+            section a .btn {
+                padding: 12px;
+                border-radius: 12px;
+                background: #33ccff;
+                font-size: 15px;
+                border: 4px solid rgba(179, 236, 255, 0.5);
+                box-shadow: 0 0 40px rgba(204, 242, 255, 0.5);
+            }
+
+            section a .btn:hover {
+                box-shadow: 0 0 60px rgba(204, 242, 255, 0.5);
+            }
+
+            section .note h2:nth-child(3) {
+                padding-top: 10px;
+            }
+        }
+
+        @media (max-width:375px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section {
+                height: 100vh;
+                width: 100%;
+            }
+
+            footer .xbox h2,
+            footer .discord h2 {
+                font-size: 14px;
+            }
+
+            footer .gmail h2 {
+                font-size: 14px;
+            }
+
+            .congo {
+                height: 45px;
+                width: 260px;
+                border-radius: 10px;
+                box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.6);
+                font-size: 10px;
+            }
+        }
+
+        @media (max-width:320px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section {
+                height: 100vh;
+                width: 100%;
+            }
+
+            nav img {
+                width: 180px;
+            }
+
+            .nav-links ul {
+                top: 91px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-height:320px) {
+            body {
+                overflow-x: hidden;
+                min-height: 100vh;
+                width: 100%;
+            }
+
+            section {
+                height: 100vh;
+                width: 100%;
+            }
+
+            nav img {
+                width: 160px;
+            }
+
+            .nav-links ul {
+                top: 82px;
+            }
+
+            footer .xbox .fas,
+            footer .discord .fas,
+            footer .gmail .fas {
+                font-size: 15px;
+            }
+
+            footer .gmail h2 {
+                font-size: 15px;
+            }
+
+            footer .copyright h1 {
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width:319px) {
+            body {
+                overflow: hidden;
+                min-height: 100vh;
+                width: 100%;
+                background: #091925;
+            }
+
+            section,
+            .sec,
+            nav,
+            .toggle,
+            footer {
+                display: none;
+            }
+
+            .cover1 {
+                display: grid;
+            }
+        }
+
+        @media (max-height:299px) {
+            body {
+                overflow: hidden;
+                min-height: 100vh;
+                width: 100%;
+                background: #091925;
+            }
+
+            section,
+            .sec,
+            nav,
+            .toggle,
+            footer {
+                display: none;
+            }
+
+            .cover2 {
+                display: grid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="load"></div>
+    <div class="cover1 cover">
+        <h3>The Website is Not Available in this Device.</h3>
+    </div>
+    <div class="cover2 cover">
+        <h3>The Website is Not Available in Your Device in Landscape Mode.</h3>
+    </div>
+    <div class="tinkercad">
+        <div class="tinker">
+            <iframe src="" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" loading="lazy"></iframe>
+            <div class="close" title="Close">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
+            <div class="cube">
+                <i class="fa-solid fa-cube"></i>
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+        </div>
+        <div class="msg">
+            <h1>My Most Delicate Design !</h1>
+        </div>
+    </div>
+    <div class="congo">
+        <h3>🎉 Congrats ! You found an Easter Egg.</h3>
+    </div>
+    <div class="copy">
+        <h1>Copied !</h1>
+    </div>
+    <div class="toggle" id="toggle">
+        <div class="toggle-line" id="toggle"></div>
+    </div>
+    <nav>
+        <a href="index.html"><img src="logo.png" alt="logo"></a>
+        <div class="nav-links" id="navLinks">
+            <ul id="links">
+                <li><a href="index.html" target="_blank" title="Home">Home</a></li>
+                <li><a href="my_works.html" target="_blank" title="Go To My Works">My Works</a>
+                </li>
+                <li><a href="gallery.html" target="_blank" title="Go To Gallery">Gallery</a>
+                </li>
+                <li><a href="#" aria-label="tinkercad" target="_blank">TinkerCAD</a></li>
+                <li><a href="about.html" target="_blank" title="Go To About">About</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+        <div class="note">
+            <h2>You have to be logged in to <a href="https://www.tinkercad.com/"
+                    target="_blank"><span>TinkerCAD</span></a> to see my designs</h2>
+            <h2>First, go to <a href="https://www.tinkercad.com/" target="_blank"><span>TinkerCAD</span></a> and
+                <b>Login</b> to your account, after you login you can click <b>
+                    <font class="text" color="lightgreen">'My Designs'</font>
+                </b> button below.</h2>
+            <h2>(If you have already logged in than you can directly click 'My Designs' button)</h2>
+        </div>
+        <a href="https://www.tinkercad.com/users/juBbih5ZtsP-insane-tinkerer" target="_blank">
+            <div class="btn">My Designs</div>
+        </a>
+    </section>
+    <footer>
+        <div class="social">
+            <ul>
+                <li><a href="https://codepen.io/vishesh-coder" target="_blank" title="Codepen" class="code"><i
+                            class="fab fa-codepen" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://www.youtube.com/channel/UCwOy7VuFyAvna3Ttu3YRl8g" target="_blank" title="YouTube"><i
+                            class="fab fa-youtube" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://open.spotify.com/user/31ciz4zxhc6b35zt7tob6lpz2aia" target="_blank" title="Spotify"><i
+                            class="fab fa-spotify" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="mailto:visheshbindal2007@gmail.com" target="_blank" title="Mail"><i class="fas fa-envelope"
+                            data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://github.com/Vishesh-coder" target="_blank" title="Github" class="git"><i
+                            class="fab fa-github" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://www.linkedin.com/in/vishesh-bindal/" target="_blank" title="LinkedIn" class="linkedin"><i
+                            class="fab fa-linkedin" data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+                <li><a href="https://visheshbindal.blogspot.com/" target="_blank" title="Blog"><i class="fab fa-blogger"
+                            data-aos="zoom-in" data-aos-duration="1500"></i></a>
+                </li>
+            </ul>
+        </div>
+        <div class="xbox">
+            <i class="fab fa-xbox"></i>
+            <h2 title="Xbox ID" id="toCopy">Insane Gamer983</h2>
+            <i class="fas fa-copy" title="Copy" onclick="copy('toCopy')"></i>
+        </div>
+        <div class="discord">
+            <i class="fab fa-discord"></i>
+            <h2 title="Discord ID" id="toID">Vishesh Bindal</h2>
+            <i class="fas fa-copy" title="Copy" onclick="copy('toID')"></i>
+        </div>
+        <div class="gmail">
+            <i class="fa-solid fa-envelope-open-text" id="fab"></i>
+            <h2 title="Gmail" id="toMail">visheshbindal2007@gmail.com</h2>
+            <i class="fas fa-copy" title="Copy" onclick="copy('toMail')"></i>
+        </div>
+        <div class="copyright">
+            <h1>Copyright © <span class="year">2022</span> Vishesh Bindal, Inc. All rights reserved.</h1>
+        </div>
+    </footer>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/egg.js/1.0/egg.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"
+        integrity="sha512-zuZ5wVszlsRbRF/vwXD0QS/tHzBYHFzCD/BT0lI3yrWhNZFWDkkF3KPEY//WTanqxwPdZkskQ+xZo0rnfHBc5A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(window).on('load', function () {
+
+            $('.load').fadeOut('slow', function () {
+
+                $('.btn').css({
+                    '-webkit-transform': 'translateY(0px)',
+                    '-ms-transform': 'translateY(0px)',
+                    transform: 'translateY(0px)',
+                    opacity: '1',
+                });
+                $('.note').css({
+                    '-webkit-transform': 'translateY(0px)',
+                    '-ms-transform': 'translateY(0px)',
+                    transform: 'translateY(0px)',
+                    opacity: '1',
+                });
+
+                $('.note').hover(function () {
+                    $('.note').css({
+                        '-webkit-transition': '0.5s',
+                        '-o-transition': '0.5s',
+                        transition: '0.5s'
+                    });
+                });
+                $('.btn').hover(function () {
+                    $('.btn').css({
+                        '-webkit-transition': '0.5s cubic-bezier(.175, .885, .32, 1.275)',
+                        '-o-transition': '0.5s cubic-bezier(.175, .885, .32, 1.275)',
+                        transition: '0.5s cubic-bezier(.175, .885, .32, 1.275)',
+                        '-webkit-transform': 'scale(1.1)',
+                        '-ms-transform': 'scale(1.1)',
+                        transform: 'scale(1.1)'
+                    });
+                });
+                $('.btn').mouseleave(function () {
+                    $('.btn').css({
+                        '-webkit-transform': 'scale(1)',
+                        '-ms-transform': 'scale(1)',
+                        transform: 'scale(1)'
+                    });
+                });
+
+            });
+        });
+
+        $('.fa-copy').click(function () {
+            $('.copy').fadeIn('slow');
+            setTimeout(function () {
+                $('.copy').fadeOut('slow');
+            }, 1500);
+        })
+
+        $('.text').click(function () {
+            $('iframe').attr("src", "https://www.tinkercad.com/embed/52Qz88uF5qI?editbtn=1");
+            $('.tinkercad').fadeIn(0);
+            $('.tinkercad').css({
+                display: '-webkit-box',
+                display: '-ms-flexbox',
+                display: 'flex'
+            });
+            setTimeout(function () {
+                $('.congo').css({
+                    right: '15px'
+                });
+            }, 500);
+            $('.tinker').fadeIn('slow');
+            $('.close').click(function () {
+                $('.tinker').fadeOut('slow');
+                setTimeout(function () {
+                    $('.tinker').fadeOut('slow');
+                }, 500);
+            });
+
+            $('.fa-cube').click(function () {
+                $(this).fadeOut('fast');
+                $('iframe').fadeIn('fast');
+                $('.fa-arrow-left').fadeIn('fast');
+                $('.fa-arrow-left').css({
+                    display: '-ms-grid',
+                    display: 'grid'
+                });
+            });
+            $('.fa-arrow-left').click(function () {
+                $(this).fadeOut('fast');
+                $('iframe').fadeOut('fast');
+                $('.fa-cube').fadeIn('fast');
+                $('.fa-cube').css({
+                    display: '-ms-grid',
+                    display: 'grid'
+                });
+            });
+
+            setTimeout(function () {
+                $('.msg').fadeIn('slow');
+                $('.msg').css({
+                    display: '-ms-grid',
+                    display: 'grid'
+                });
+            }, 800);
+            setTimeout(function () {
+                $('.msg').fadeOut('slow');
+            }, 2300);
+            setTimeout(function () {
+                $('.congo').css({
+                    right: '-435px'
+                });
+            }, 3500);
+        });
+
+        var egg = new Egg("up,up,down,down,left,right,left,right,t,c", function () {
+            $('.tinkercad').fadeIn(0);
+            $('.tinkercad').css({
+                display: '-webkit-box',
+                display: '-ms-flexbox',
+                display: 'flex'
+            });
+            setTimeout(function () {
+                $('.congo').css({
+                    right: '15px'
+                });
+            }, 500);
+            $('.tinker').fadeIn('slow');
+            $('.close').click(function () {
+                $('.tinker').fadeOut('slow');
+                setTimeout(function () {
+                    $('.tinker').fadeOut('slow');
+                }, 500);
+            });
+
+            $('.fa-cube').click(function () {
+                $(this).fadeOut('fast');
+                $('iframe').fadeIn('fast');
+                $('.fa-arrow-left').fadeIn('fast');
+                $('.fa-arrow-left').css({
+                    display: '-ms-grid',
+                    display: 'grid'
+                });
+            });
+            $('.fa-arrow-left').click(function () {
+                $(this).fadeOut('fast');
+                $('iframe').fadeOut('fast');
+                $('.fa-cube').fadeIn('fast');
+                $('.fa-cube').css({
+                    display: '-ms-grid',
+                    display: 'grid'
+                });
+            });
+
+            setTimeout(function () {
+                $('.msg').fadeIn('slow');
+                $('.msg').css({
+                    display: '-ms-grid',
+                    display: 'grid'
+                });
+            }, 800);
+            setTimeout(function () {
+                $('.msg').fadeOut('slow');
+            }, 2300);
+            setTimeout(function () {
+                $('.congo').css({
+                    right: '-435px'
+                });
+            }, 3500);
+        }).listen();
+    </script>
+    <script>
+        const toggleBtn = document.querySelector(".toggle");
+        const menu = document.querySelector(".menu");
+        let toggleOpen = false;
+        toggleBtn.addEventListener("click", () => {
+            if (!toggleOpen) {
+                toggleBtn.classList.add("open");
+                toggleOpen = true;
+                document.querySelector('ul').style.right = "0";
+            } else {
+                toggleBtn.classList.remove("open");
+                toggleOpen = false;
+                document.querySelector('ul').style.right = "-250px";
+            }
+        });
+        document.onclick = function (e) {
+            if (e.target.id !== 'navLinks' && e.target.id !== 'links' && e.target.id !== 'toggle') {
+                toggleBtn.classList.remove("open");
+                toggleOpen = false;
+                document.querySelector('ul').style.right = "-250px";
+            }
+        };
+
+        function copy(id) {
+            var text = document.getElementById(id).innerText;
+            var elem = document.createElement("textarea");
+            document.body.appendChild(elem);
+            elem.value = text;
+            elem.select();
+            document.execCommand("copy");
+            document.body.removeChild(elem);
+        }
+
+        let day = new Date();
+        document.querySelector('.year').innerHTML = day.getFullYear();
+
+        history.scrollRestoration = "manual"
+    </script>
+    <script>
+        jQuery(document).ready(function () {
+            "use strict"
+            $('footer').ripples({
+                dropRadius: 20,
+                perturbance: 2,
+                resolution: 300,
+                interactive: true,
+            });
+        })
+    </script>
+</body>
+
+</html>
